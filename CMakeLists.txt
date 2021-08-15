@@ -12,6 +12,9 @@ set(SDL2_LIBRARY CACHE FILEPATH "")
 set(SDL2MAIN_LIBRARY CACHE FILEPATH "")
 set(SDL2_MIXER_LIBRARY CACHE FILEPATH "")
 
+set(LUA_INCLUDE_DIR CACHE PATH "")
+set(LUA_LIBRARY CACHE FILEPATH "")
+
 add_executable(wolf4sdl)
 
 target_sources(wolf4sdl PUBLIC
@@ -41,14 +44,19 @@ target_sources(wolf4sdl PUBLIC
     ${WOLF4SDL_SOURCE_DIR}/wl_state.cpp
     ${WOLF4SDL_SOURCE_DIR}/wl_text.cpp
     ${WOLF4SDL_SOURCE_DIR}/states.cpp
+
+    ${WOLF4SDL_SOURCE_DIR}/cc_lua.cpp
 )
 
 target_include_directories(wolf4sdl PUBLIC ${SDL2_INCLUDE_DIR})
 target_include_directories(wolf4sdl PUBLIC ${SDL2_MIXER_INCLUDE_DIR})
+target_include_directories(wolf4sdl PUBLIC ${LUA_INCLUDE_DIR})
 
 target_link_libraries(wolf4sdl ${SDL2_LIBRARY})
 target_link_libraries(wolf4sdl ${SDL2MAIN_LIBRARY})
 target_link_libraries(wolf4sdl ${SDL2_MIXER_LIBRARY})
+
+target_link_libraries(wolf4sdl ${LUA_LIBRARY})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
